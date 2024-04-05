@@ -15,7 +15,7 @@ trait SecondDegreePolynomial:
 object SecondDegreePolynomial:
   def apply(secondDegree: Double, firstDegree: Double, constant: Double): SecondDegreePolynomial = ??? // Fill here
 
-@main def checkSecondDegreePolynomial(): Unit =
+@main def checkComplex(): Unit =
   val simplePolynomial = SecondDegreePolynomial(1.0, 0, 3)
   val anotherPolynomial = SecondDegreePolynomial(0.0, 1, 0.0)
   val fullPolynomial = SecondDegreePolynomial(3.0, 2.0, 5.0)

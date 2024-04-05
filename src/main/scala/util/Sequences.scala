@@ -37,6 +37,13 @@ object Sequences: // Essentially, generic linkedlists
       def filter(f: A => Boolean): Sequence[A] = sequence.flatMap:
         case x if f(x) => Cons(x, Nil())
         case _ => Nil()
+
+      def find(f: A => Boolean): Optional[A] = sequence match
+        case Cons(h, t) if f(h) => Just(h)
+        case Cons(_, t) => t.find(f)
+        case _ => Empty()
+
+      def contains(e: A): Boolean = !sequence.find(_ == e).isEmpty
 @main def trySequences =
   import Sequences.* 
   val sequence = Sequence(1, 2, 3)
@@ -46,4 +53,7 @@ object Sequences: // Essentially, generic linkedlists
   println(sequence.flatMap(x => Sequence(x, x * 2)))
   println(sequence.filter(_ % 2 == 0))
   println(sequence.concat(Sequence(4, 5, 6)))
+  println(sequence.find(_ % 2 == 0))
+  println(sequence.contains(2))
+
 

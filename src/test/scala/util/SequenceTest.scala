@@ -31,4 +31,15 @@ class SequenceTest:
     assertEquals(s.filter(_ % 2 == 0), Sequence(2, 4))
     assertEquals(Sequence.Nil().filter(_ => true), Sequence.Nil())
 
+  def testFind(): Unit =
+    val s = Sequence(1, 2, 3, 4, 5)
+    assertEquals(s.find(_ % 2 == 0), Some(2))
+    assertEquals(s.find(_ % 2 == 1), Some(1))
+    assertEquals(s.find(_ > 5), None)
+    assertEquals(Sequence.Nil().find(_ => true), None)
 
+  def testContains(): Unit =
+    val s = Sequence(1, 2)
+    assertTrue(s.contains(1))
+    assertTrue(s.contains(2))
+    assertFalse(Sequence.Nil().contains(1))
