@@ -14,8 +14,11 @@ object Sequences: // Essentially, generic linkedlists
 
   object Sequence:
     def apply[A](elements: A*): Sequence[A] =
-      if elements.isEmpty then Nil()
-      else Cons(elements.head, apply(elements.tail*))
+      var sequence: Sequence[A] = Nil()
+      for e <- elements do
+        sequence = Cons(e, sequence)
+      sequence.reverse()
+
 
     def empty[A]: Sequence[A] = Nil()
 
@@ -44,6 +47,10 @@ object Sequences: // Essentially, generic linkedlists
         case _ => Empty()
 
       def contains(e: A): Boolean = !sequence.find(_ == e).isEmpty
+
+      def reverse(): Sequence[A] = sequence match
+        case Cons(h, t) => t.reverse().concat(Cons(h, Nil()))
+        case _ => Nil()
 @main def trySequences =
   import Sequences.* 
   val sequence = Sequence(1, 2, 3)

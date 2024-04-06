@@ -2,6 +2,7 @@ package util
 
 import org.junit.*
 import org.junit.Assert.*
+import util.Optionals.Optional.*
 import util.Sequences.Sequence
 class SequenceTest:
   @Test
@@ -34,10 +35,10 @@ class SequenceTest:
   @Test
   def testFind(): Unit =
     val s = Sequence(1, 2, 3, 4, 5)
-    assertEquals(s.find(_ % 2 == 0), Some(2))
-    assertEquals(s.find(_ % 2 == 1), Some(1))
-    assertEquals(s.find(_ > 5), None)
-    assertEquals(Sequence.Nil().find(_ => true), None)
+    assertEquals(s.find(_ % 2 == 0), Just(2))
+    assertEquals(s.find(_ % 2 == 1), Just(1))
+    assertEquals(s.find(_ > 5), Empty())
+    assertEquals(Sequence.Nil().find(_ => true), Empty())
 
   @Test
   def testContains(): Unit =
