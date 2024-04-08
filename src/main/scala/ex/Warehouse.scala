@@ -59,10 +59,10 @@ object Warehouse:
   warehouse.contains(dellXps.code) // true
   warehouse.store(dellInspiron) // side effect, add dell Inspiron to the warehouse
   warehouse.store(xiaomiMoped) // side effect, add xiaomi moped to the warehouse
-  warehouse.searchItems("mobility") // List(xiaomiMoped)
-  warehouse.searchItems("notebook") // List(dellXps, dell Inspiron)
+  warehouse.searchItems("mobility") // Sequence(xiaomiMoped)
+  warehouse.searchItems("notebook") // Sequence(dellXps, dell Inspiron)
   warehouse.retrieve(11) // None
-  warehouse.retrieve(dellXps.code) // Some(dellXps)
+  warehouse.retrieve(dellXps.code) // Just(dellXps)
   warehouse.remove(dellXps) // side effect, remove dell xps from the warehouse
   warehouse.retrieve(dellXps.code) // None
 
