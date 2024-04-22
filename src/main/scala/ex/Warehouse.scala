@@ -57,6 +57,12 @@ trait Warehouse:
    * @return true if the warehouse contains an item with the given code, false otherwise
    */
   def contains(itemCode: Int): Boolean
+  /**
+    * Check if every item has the given tag
+    * @param tag
+    * @return the given tag if every item has it, empty otherwise
+    */
+  def sameTag(tag: String): Optional[String]
 
 end Warehouse
 
@@ -73,6 +79,12 @@ object Warehouse:
     override def retrieve(code: Int): Optional[Item] = items.find(item => item.code == code)
 
     override def remove(item: Item): Unit = items = items.filter(f = currentItem => currentItem != item)
+
+    override def sameTag(tag: String): Optional[String] = items.filter(!_.tags.contains(tag)) match
+      case Sequence.Cons(_, _) => Optional.Just(tag)
+      case _ => Optional.Empty()
+    
+    
 
 @main def mainWarehouse(): Unit =
   val warehouse = Warehouse()
